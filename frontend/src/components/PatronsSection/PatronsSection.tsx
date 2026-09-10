@@ -21,20 +21,8 @@ interface PatronPerson {
 
 type Patron = PatronLogo | PatronPerson;
 
-// ── Section 1: Patrons (5 containers, no tier heading) ───────────
+// ── Section 1: Patrons ───────────────────────────────────────────
 const PATRONS: Patron[] = [
-  {
-    type: "person",
-    name: "Dr. A. J. Shetty",
-    role: "President",
-    photo: "/patrons/president.webp",
-  },
-  {
-    type: "person",
-    name: "Mr. Prashanth Shetty",
-    role: "Vice President",
-    photo: "/patrons/vicepresident.webp",
-  },
   {
     type: "person",
     name: "Dr. T. Jayaprakash Rao",
@@ -49,56 +37,9 @@ const PATRONS: Patron[] = [
   },
   {
     type: "person",
-    name: "Dr. P. Mahabaleswarappa",
-    role: "Dean Academics",
-    photo: "/patrons/dean.webp",
-  },
-  {
-    type: "person",
     name: "Dr. Antony P. J",
     role: "Vice Principal & Convenor",
     photo: "/patrons/viceprincipal.webp",
-  },
-];
-
-// ── Section 2: Deans (6 containers) ──────────────────────────────
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const DEANS: Patron[] = [
-  {
-    type: "person",
-    name: "Dean Name",
-    role: "Dean",
-    photo: "",
-  },
-  {
-    type: "person",
-    name: "Dean Name",
-    role: "Dean",
-    photo: "",
-  },
-  {
-    type: "person",
-    name: "Dean Name",
-    role: "Dean",
-    photo: "",
-  },
-  {
-    type: "person",
-    name: "Dean Name",
-    role: "Dean",
-    photo: "",
-  },
-  {
-    type: "person",
-    name: "Dean Name",
-    role: "Dean",
-    photo: "",
-  },
-  {
-    type: "person",
-    name: "Dean Name",
-    role: "Dean",
-    photo: "",
   },
 ];
 
@@ -231,13 +172,10 @@ export default function PatronsSection() {
         <div className={styles.header}>
           <div className="section-label">{"//"} community supporters</div>
           <h2 className="section-title">
-            OUR <span className="text-lime">PATRONS</span>
+            OUR <span className="text-lime">ADVISORS</span>
           </h2>
           <p className="section-sub">
-            Our patrons are individuals and organizations who believe in the
-            mission of Singularity and contribute to making this hackathon a
-            reality. Their generosity and commitment to nurturing the next
-            generation of innovators inspires us every step of the way.
+            The esteemed advisors provide strategic direction, institutional guidance, and steadfast support towards the successful realization of the hackathon. Their visionary leadership and commitment to innovation serve as the foundation for fostering a culture of excellence, collaboration, and technological advancement.
           </p>
         </div>
 
