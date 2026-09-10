@@ -23,7 +23,7 @@ export const STEP_MS = 1600;
 export const STEP_SCHEDULE: StepSchedule[] = (() => {
   let acc = 0;
   return SEQUENCE.map((val, idx) => {
-    const isGlitch = val === '7' || val === '4' || val === '2' || val === '1';
+    const isGlitch = val === '7' || val === '4' || val === '1';
     const isLast = idx === SEQUENCE.length - 1;
     const holdTime = STEP_MS;
     const vanishMs = isGlitch ? 380 : 220;
@@ -169,10 +169,14 @@ export default function CountDown({
 
     const offsetInStep = safeElapsed - activeStep.startMs;
 
-    // Trigger sound on each new step
+    // Trigger sound on each new step: custom glitch sound on 7, 4, 1; standard beep on all other numbers
     if (lastBeepedIndexRef.current !== activeStep.index) {
       lastBeepedIndexRef.current = activeStep.index;
-      playBeep();
+      if (activeStep.isGlitch) {
+        soundManager.playGlitchSound();
+      } else {
+        playBeep();
+      }
     }
 
     setSeed((s) => s + 1);
@@ -325,7 +329,7 @@ export default function CountDown({
 }
 
 function GlitchNumber({ value, phase, step, seed }: { value: string; phase: Phase; step: number; seed: number }) {
-  const isGlitchNumber = value === '7' || value === '4' || value === '2' || value === '1';
+  const isGlitchNumber = value === '7' || value === '4' || value === '1';
 
   // Deterministic calculation based on step and seed to avoid SSR hydration mismatch
   const r1 = (Math.sin((step + 1) * 37 + seed * 13) * 6).toFixed(2);
@@ -352,7 +356,7 @@ function GlitchNumber({ value, phase, step, seed }: { value: string; phase: Phas
         {value}
       </span>
 
-      {/* RGB ghost layers only exist for glitch numbers (7, 4, 2, 1) */}
+      {/* RGB ghost layers only exist for glitch numbers (7, 4, 1) */}
       {isGlitchNumber && (
         <>
           <span className={`${styles.ghostLayer} ${styles.ghostRed}`} aria-hidden>{value}</span>
