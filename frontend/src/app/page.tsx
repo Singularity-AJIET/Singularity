@@ -9,6 +9,7 @@ import RegistrationInfoSection from "@/components/RegistrationInfoSection/Regist
 import FAQSection from "@/components/FAQSection/FAQSection";
 import SponsorsSection from "@/components/SponsorsSection/SponsorsSection";
 import PatronsSection from "@/components/PatronsSection/PatronsSection";
+import AdvisorsSection from "@/components/AdvisorsSection/AdvisorsSection";
 import Footer from "@/components/Footer/Footer";
 import TickerTape from "@/components/TickerTape/TickerTape";
 import SplashWrapper from "@/components/SplashWrapper";
@@ -170,6 +171,7 @@ export default function Home() {
           <RegistrationInfoSection />
           <SponsorsSection />
           <PatronsSection />
+          <AdvisorsSection />
           <CoordinatorsSection />      
           <ScheduleSection />
           <FAQSection />
