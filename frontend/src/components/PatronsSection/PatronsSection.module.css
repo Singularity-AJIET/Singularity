@@ -40,11 +40,8 @@
 }
 
 .gridPatrons {
-  grid-template-columns: repeat(6, 1fr);
-}
-
-.gridDeans {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 280px));
+  justify-content: center;
 }
 
 .gridFaculty {
@@ -176,12 +173,6 @@
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 1200px) {
-  .gridPatrons {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .gridDeans {
-    grid-template-columns: repeat(3, 1fr);
-  }
   .gridFaculty {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -189,23 +180,27 @@
 
 @media (max-width: 760px) {
   .gridPatrons,
-  .gridDeans,
   .gridFaculty {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gridPatrons > :nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 10px);
   }
 }
 
 @media (max-width: 480px) {
-  /* Patrons: 2-up at small size */
-  .gridPatrons {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  /* Deans & Faculty: also 2-up */
-  .gridDeans,
+  /* Patrons & Faculty: 2-up at small size */
+  .gridPatrons,
   .gridFaculty {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+  }
+
+  .gridPatrons > :nth-child(3) {
+    width: calc(50% - 5px);
   }
   /* Tighter card padding */
   .card {
