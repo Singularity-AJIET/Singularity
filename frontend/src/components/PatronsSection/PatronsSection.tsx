@@ -1,112 +1,31 @@
 "use client";
-import { ImageUp } from "lucide-react";
 import styles from "./PatronsSection.module.css";
-
-interface PatronLogo {
-  type: "logo";
-  name: string;
-  desc: string;
-  link: string;
-  logo: string; // e.g. "/patrons/acme.webp" — leave "" for upload placeholder
-}
 
 interface PatronPerson {
   type: "person";
   name: string;
   role: string;
-  photo: string; // e.g. "/team/sharon.webp"
+  photo: string;
   imgPosition?: string;
   link?: string;
 }
 
-type Patron = PatronLogo | PatronPerson;
-
-// ── Section 1: Patrons ───────────────────────────────────────────
-const PATRONS: Patron[] = [
+// ── Patrons: President and Vice President ────────────────────────
+const PATRONS: PatronPerson[] = [
   {
     type: "person",
-    name: "Dr. T. Jayaprakash Rao",
-    role: "Campus Director",
-    photo: "/patrons/campusdirector.webp",
+    name: "Dr. A. J. Shetty",
+    role: "President",
+    photo: "/patrons/president.webp",
   },
   {
     type: "person",
-    name: "Dr. Ashok Kumar T",
-    role: "Principal",
-    photo: "/patrons/principal.webp",
-  },
-  {
-    type: "person",
-    name: "Dr. Antony P. J",
-    role: "Vice Principal & Convenor",
-    photo: "/patrons/viceprincipal.webp",
+    name: "Mr. Prashanth Shetty",
+    role: "Vice President",
+    photo: "/patrons/vicepresident.webp",
   },
 ];
 
-// ── Section 3: Faculty Coordinators (4 containers) ───────────────
-const FACULTY_COORDINATORS: PatronPerson[] = [
-  {
-    type: "person",
-    name: "Mrs. Sharon C Dsouza",
-    role: "Faculty Coordinator",
-    photo: "/patrons/sharon.webp",
-  },
-  {
-    type: "person",
-    name: "Mrs. Snitha Shetty",
-    role: "Faculty Coordinator",
-    photo: "/patrons/snithashetty.webp",
-  },
-  {
-    type: "person",
-    name: "Mr. Sathyendra Bhat J",
-    role: "Faculty Coordinator",
-    photo: "/patrons/Sathyendra Bhat J.webp",
-    imgPosition: "center 0%",
-  },
-  {
-    type: "person",
-    name: "Mr. Manjukiran B",
-    role: "Faculty Coordinator",
-    photo: "/patrons/manjukiran.webp",
-  },
-];
-
-// ── Logo card ───────────────────────────────────────────────
-function LogoCard({ patron }: { patron: PatronLogo }) {
-  return (
-    <a
-      href={patron.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles.card}
-      aria-label={`${patron.name} - Visit Website`}
-    >
-      <div className={styles.logoWrap}>
-        {patron.logo ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={patron.logo}
-            alt={`${patron.name} logo`}
-            className={styles.logoImg}
-            width={250}
-            height={100}
-            style={{ objectFit: "contain" }}
-          />
-        ) : (
-          <div className={styles.logoPlaceholder}>
-            <ImageUp size={22} />
-            <span>Upload logo</span>
-          </div>
-        )}
-      </div>
-      <span className={styles.pName}>{patron.name}</span>
-      <p className={styles.pDesc}>{patron.desc}</p>
-    </a>
-  );
-}
-
-// ── Person card (photo + name + role) ──────────────────────
 function PersonCard({ patron }: { patron: PatronPerson }) {
   const cardContent = (
     <>
@@ -172,33 +91,18 @@ export default function PatronsSection() {
         <div className={styles.header}>
           <div className="section-label">{"//"} community supporters</div>
           <h2 className="section-title">
-            OUR <span className="text-lime">ADVISORS</span>
+            OUR <span className="text-lime">PATRONS</span>
           </h2>
           <p className="section-sub">
-            The esteemed advisors provide strategic direction, institutional guidance, and steadfast support towards the successful realization of the hackathon. Their visionary leadership and commitment to innovation serve as the foundation for fostering a culture of excellence, collaboration, and technological advancement.
+            The Hackathon is organised under the esteemed patronage of our institution’s distinguished leaders, whose unwavering support, guidance, and commitment provide the foundation for this initiative. Their strategic direction and generous financial support enable us to create an enriching platform that brings together innovation, technology, and problem-solving. Their encouragement and confidence in the potential of this initiative inspire us to continually raise the standards of excellence and foster an environment where ideas can evolve into meaningful and impactful solutions.
           </p>
         </div>
 
-        {/* Section 1: 5 containers (No heading) */}
         <div className={styles.tier}>
           <div className={`${styles.tierGrid} ${styles.gridPatrons}`}>
-            {PATRONS.map((p, i) =>
-              p.type === "person" ? (
-                <PersonCard key={`patron-${i}`} patron={p} />
-              ) : (
-                <LogoCard key={`patron-${i}`} patron={p} />
-              )
-            )}
-          </div>
-        </div>
-
-        {/* Section 3: Faculty Coordinators (Heading + 4 containers) */}
-        <div className={styles.tier}>
-          <div className={styles.tierLabel}>Faculty Coordinators</div>
-          <div className={`${styles.tierGrid} ${styles.gridFaculty}`}>
-            {FACULTY_COORDINATORS.map((p, i) =>
-              <PersonCard key={`faculty-${i}`} patron={p} />
-            )}
+            {PATRONS.map((p, i) => (
+              <PersonCard key={`patron-${i}`} patron={p} />
+            ))}
           </div>
         </div>
       </div>
